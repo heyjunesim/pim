@@ -1,73 +1,51 @@
-//load the image of the painting application
 let img;
 function preload() {
-  img = loadImage('background.png');
+  img = loadImage('p2back.png');
 }
 
 function setup() {
-  createCanvas(800,600);
-  //set background color to white
-  background(255);
-}
+  createCanvas(1440,900);
+  image(img,0,0,1440,900) }
 
 function draw() {
-  //insert the image
-  image(img, 0, 0, 800, 600);
-  //make a brush
-  if (mouseIsPressed == true) {
-    line(mouseX, mouseY, pmouseX, pmouseY);
-  }
-}
-
-function mousePressed() {
-  //choose the color of the brush
-  if (dist (mouseX, mouseY, 640, 55) <35) {
-    stroke(255, 0, 0);
-  } else if (dist (mouseX, mouseY, 640, 130) < 35) {
-    stroke(255, 128, 0);
-  } else if (dist (mouseX, mouseY, 640, 205) < 35) {
-    stroke(255, 255, 0);
-  } else if (dist (mouseX, mouseY, 640, 280) < 35) {
-    stroke(0, 128, 0);
-  } else if (dist (mouseX, mouseY, 725, 55) < 35) {
-    stroke(0, 0, 255);
-  } else if (dist (mouseX, mouseY, 725, 130) < 35) {
-    stroke(0, 0, 128);
-  } else if (dist (mouseX, mouseY, 725, 205) < 35) {
-    stroke(128, 0, 128);
-  } else if (dist (mouseX, mouseY, 725, 280) < 35) {
-    stroke(random(255), random(255), random(255));
-  //make erase button
-  } else if (dist (mouseX, mouseY, 726, 374) < 25) {
-    stroke(255);
-  } else if (dist (mouseX, mouseY, 726, 463) < 25) {
-    background(255);
+  randomSeed(0);
+  
+  var x,y,r;
+  var delta = map(mouseY,0,735,10,20);
+  
+  for (y=750; y<900; y+=delta) {
+    for (x=390; x<495; x+=delta) {
+      r = random(0,1);
+      if (r<0.2) {
+        fill(random(220,240),random(90,110),random(90,110));
+        ellipse(x,y,delta,delta)
+        stroke(255);
+      }
+    }
   }
   
-  //choose the thicknes of the brush
-  if (dist (mouseX, mouseY, 640, 360) < 20) {
-    strokeWeight(40);
-  } else if (dist (mouseX, mouseY, 640, 420) < 15) {
-    strokeWeight(30);
-  } else if (dist (mouseX, mouseY, 640, 470) < 10) {
-    strokeWeight(20);
-  } else if (dist (mouseX, mouseY, 640, 510) < 7.5) {
-    strokeWeight(15);
-  } else if (dist (mouseX, mouseY, 640, 545) < 5) {
-    strokeWeight(10);
+  for (y=750; y<900; y+=delta) {
+    for (x=663; x<773; x+=delta) {
+      r = random(0,1);
+      if (r<0.2) {
+        fill(random(220,240),random(180,200),random(90,110));
+        ellipse(x,y,delta,delta);
+        stroke(255);
+      }
+    }
   }
   
-  //make save button
-  if (dist (mouseX, mouseY, 726, 549) < 25) {
-    save ("my_apple.jpg");
+  for (y=750; y<900; y+=delta) {
+    for (x=940; x<1050; x+=delta) {
+      r = random(0,1);
+      if (r<0.2) {
+        fill(random(100,120),random(110,130),0);
+        ellipse(x,y,delta,delta);
+        stroke(255);
+      }
+    }
   }
+  
 }
-    
-                   
-                   
-                   
-                   
-                   
-                   
-                   
-                   
+       
+      
