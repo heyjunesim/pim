@@ -1,51 +1,65 @@
 let img;
 function preload() {
-  img = loadImage('p2back.png');
+  img = loadImage('Lightning.png');
 }
+  
+var max_rainDrops = 1000;
+var rainDrops = [];
+var rainSound;
+
+function rainDrop(x, y, vy, sz, c) {
+  this.x = x;
+  this.y = y;
+  this.vy = vy;
+  this.sz = sz;
+  this.c = c;
+
+  this.move = function() {
+    this.y += this.vy; 
+    if (this.y>windowHeight) this.y = 0;
+
+    if (mouseIsPressed) {
+      var xdif = abs(this.x-mouseX);
+      if (xdif < 100 + random(-100,100)) {
+        if ( (this.y- mouseY) > random(-100,100)) {
+          this.y=0;
+        }
+      image(img,mouseX,mouseY);
+      }
+    }
+  }
+
+  this.render = function() { 
+    noStroke();
+    fill(this.c);
+    ellipse(this.x, this.y, 2, this.sz);
+  }
+}
+
+//function preload() {
+  //rainSound = loadSound('rain_inside_house.mp3');
+//}
 
 function setup() {
-  createCanvas(1440,900);
-  image(img,0,0,1440,900) }
+  createCanvas(windowWidth, windowHeight);
+
+  var i;
+  for (i=0; i<max_rainDrops; i++) {
+    rainDrops[i] = new rainDrop(
+      random(0, windowWidth), random(0, windowHeight), 
+      random(30, 100), 
+      random(30, 100), color(random(100, 255)) );
+  }
+  
+  //rainSound.loop();
+}
 
 function draw() {
-  randomSeed(0);
-  
-  var x,y,r;
-  var delta = map(mouseY,0,735,10,20);
-  
-  for (y=750; y<900; y+=delta) {
-    for (x=390; x<495; x+=delta) {
-      r = random(0,1);
-      if (r<0.2) {
-        fill(random(220,240),random(90,110),random(90,110));
-        ellipse(x,y,delta,delta)
-        stroke(255);
-      }
-    }
+  background(0);
+
+  var i;
+  for (i=0; i<max_rainDrops; i++) {
+    rainDrops[i].move();
+    rainDrops[i].render();
   }
-  
-  for (y=750; y<900; y+=delta) {
-    for (x=663; x<773; x+=delta) {
-      r = random(0,1);
-      if (r<0.2) {
-        fill(random(220,240),random(180,200),random(90,110));
-        ellipse(x,y,delta,delta);
-        stroke(255);
-      }
-    }
-  }
-  
-  for (y=750; y<900; y+=delta) {
-    for (x=940; x<1050; x+=delta) {
-      r = random(0,1);
-      if (r<0.2) {
-        fill(random(100,120),random(110,130),0);
-        ellipse(x,y,delta,delta);
-        stroke(255);
-      }
-    }
-  }
-  
 }
-       
-      
