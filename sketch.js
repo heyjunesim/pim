@@ -1,6 +1,6 @@
 let img;
 function preload() {
-  img = loadImage('Lightning.png');
+  img = loadImage('lightning.png');
 }
   
 var max_rainDrops = 1000;
@@ -24,8 +24,10 @@ function rainDrop(x, y, vy, sz, c) {
         if ( (this.y- mouseY) > random(-100,100)) {
           this.y=0;
         }
-      image(img,mouseX,mouseY);
       }
+    }
+    if (mousePressed) {
+      image(img,mouseX,mouseY);
     }
   }
 
