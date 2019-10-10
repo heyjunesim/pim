@@ -1,7 +1,7 @@
 let img;
 function preload() {
   img = loadImage('lightning.png');
-  //rainSound = loadSound('rain_inside_house.mp3');
+  rainSound = loadSound('rain_inside_house.mp3');
 }
 
 var max_rainDrops = 200;
@@ -47,7 +47,7 @@ function setup() {
       random(30,100), random(30,100), color(random(100,255)) );
   }
   
-  //rainSound.loop();
+  rainSound.loop();
 }
 
 function draw() {
@@ -60,3 +60,10 @@ function draw() {
   }
 } 
   
+  
+  
+
+
+
+
+
